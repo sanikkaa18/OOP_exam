@@ -1,0 +1,1361 @@
+1.
+1.1) Program to remove all repeated elements from an array  
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class RemoveRepeatedElements {
+    public static void main(String[] args) {
+        int[] array = { 1, 2, 3, 4, 2, 3, 5, 6, 1, 7, 8, 9, 4 };
+
+        int[] result = removeDuplicates(array);
+
+        System.out.print("Array without repeated elements: ");
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+    }
+
+    public static int[] removeDuplicates(int[] array) {
+        Set<Integer> uniqueSet = new HashSet<>();
+        List<Integer> result = new ArrayList<>();
+
+        for (int num : array) {
+            if (!uniqueSet.contains(num)) {
+                result.add(num);
+                uniqueSet.add(num);
+            }
+        }
+
+        // Convert the List back to an array
+        int[] uniqueArray = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            uniqueArray[i] = result.get(i);
+        }
+
+        return uniqueArray;
+    }
+}
+
+
+      1.2) Write a Java program to find the common elements between two arrays of integers.
+
+import java.util.Scanner;
+
+public class LAB_1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input array A
+        System.out.print("Enter the size of Array A: ");
+        int sizeA = scanner.nextInt();
+        int[] arrayA = new int[sizeA];
+        System.out.println("Enter the elements of Array A:");
+        for (int i = 0; i < sizeA; i++) {
+            arrayA[i] = scanner.nextInt();
+        }
+
+        // Input array B
+        System.out.print("Enter the size of Array B: ");
+        int sizeB = scanner.nextInt();
+        int[] arrayB = new int[sizeB];
+        System.out.println("Enter the elements of Array B:");
+        for (int i = 0; i < sizeB; i++) {
+            arrayB[i] = scanner.nextInt();
+        }
+
+        // Find common elements
+        System.out.println("Common elements between Array A and Array B:");
+        for (int i = 0; i < sizeA; i++) {
+            for (int j = 0; j < sizeB; j++) {
+                if (arrayA[i] == arrayB[j]) {
+                    System.out.println(arrayA[i]);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+
+2.
+2. 1) Java Program to Count Number of Duplicate Words in String
+import java.util.HashMap;
+import java.util.Map;
+
+public class CountDuplicateWords {
+    public static void main(String[] args) {
+        String text = "Java is a programming language. Java is widely used in software development. Java is versatile.";
+
+        Map<String, Integer> wordCountMap = countDuplicateWords(text);
+
+        System.out.println("Duplicate words count:");
+        for (Map.Entry<String, Integer> entry : wordCountMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+        }
+    }
+
+    public static Map<String, Integer> countDuplicateWords(String text) {
+        Map<String, Integer> wordCountMap = new HashMap<>();
+        
+        // Remove punctuation marks and convert the string to lowercase
+        text = text.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase();
+
+        String[] words = text.split("\\s+");
+
+        for (String word : words) {
+            wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+        }
+
+        return wordCountMap;
+    }
+}
+
+
+ 2.2) How to Check if the String Contains 'e' in umbrella
+public class Main {
+    public static void main(String[] args) {
+        String s = "Umbrella";
+        boolean flag = false;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == 'e') {
+                flag = true;
+                break;
+            }
+        }
+        if (flag = true) {
+            System.out.println("yes e is present");
+
+
+        }
+    }
+}
+
+3. 
+3.1)3
+public class Main {
+    public static void main(String[] args) {
+
+        String s="Greeks";
+        String revs=" ";
+        for(int i = 0;i<s.length();i++){
+        char ch= s.charAt(i);
+        revs = ch+ revs;
+
+
+        }
+        System.out.println(revs);
+
+      
+    }
+}
+
+
+3.2) Write a Java program to check that String is palindrome or not.
+class Main {
+  public static void main(String[] args) {
+
+    String str = "Radar", reverseStr = "";
+    
+    int strLength = str.length();
+
+    for (int i = (strLength - 1); i >=0; --i) {
+      reverseStr = reverseStr + str.charAt(i);
+    }
+
+    if (str.toLowerCase().equals(reverseStr.toLowerCase())) {
+      System.out.println(str + " is a Palindrome String.");
+    }
+    else {
+      System.out.println(str + " is not a Palindrome String.");
+    }
+  }
+}
+4. A Company manufactures Vehicles, which could be a Helicopter, a Car, or a Train depending on the customer’s demand. Each Vehicle instance has a method called move, which prints on the console the nature of movement of the vehicle. For example,3 the Helicopter Flies in Air, the Car Drives on Road and the Train Runs on Track. Write a program that accepts input from the user on the kind of vehicle the user wants to order, and the system should print out nature of movement. Implement all Java coding best practices to implement this program.
+import java.util.Scanner;
+
+interface Vehicle {
+    void move();
+
+}
+
+class Helicopter implements Vehicle {
+    public void move() {
+        System.out.println("Helicopter flies in air");
+
+    }
+}
+
+class Car implements Vehicle {
+    public void move() {
+        System.out.println("Car drives on road");
+    }
+}
+
+class Train implements Vehicle {
+    public void move() {
+        System.out.println("Train runs on Track.");
+    }
+}
+
+public class VehicleFactory {
+    public static void main(String[] args) {
+        System.out.println("Enter which Vehicle you want to order (Helicopter, Car, Train):");
+        Scanner sc = new Scanner(System.in);
+        String vehicle = sc.nextLine();
+        if (vehicle.equals("Helicopter")) {
+            Vehicle h = new Helicopter();
+            h.move();
+        }
+
+        else if (vehicle.equals("Car")) {
+            Vehicle c = new Car();
+            c.move();
+
+        } else if (vehicle.equals("Train")) {
+            Vehicle t = new Train();
+            t.move();
+        }
+    }
+}
+
+
+5. We have to calculate the percentage of marks obtained in three subjects (each out of 100) by student A and in four subjects (each out of 100) by student B. Create an abstract class 'Marks' with an abstract method 'getPercentage'. It is inherited by two other classes 'A' and 'B' each having a method with the same name which returns the percentage of the students. The constructor of student A takes the marks in three subjects as its parameters and the marks in four subjects as its parameters for student B. Create an object for eac of the two classes and print the percentage of marks for both the students.
+abstract class Marks{
+    abstract double getPercentage();
+}
+class A extends Marks{
+    private double Subject1, Subject2, Subject3;
+    A(double Subject1, double Subject2, double Subject3){
+        this.Subject1= Subject1;
+        this.Subject2= Subject2;
+        this.Subject3= Subject3;
+    }
+@Override
+double getPercentage(){
+    double totalMarks=Subject1+ Subject2+ Subject3;
+    return(totalMarks/300)*100;
+}
+
+    }
+    class B extends Marks{
+        private double Subject1, Subject2, Subject3, Subject4;
+        B(double Subject1, double Subject2, double Subject3, double Subject4){
+            this.Subject1=Subject1;
+            this.Subject2=Subject2;
+            this.Subject3=Subject3;
+            this.Subject4= Subject4;
+        }
+        double getPercentage(){
+            double totalMarks= Subject1+Subject2+Subject3+Subject4;
+            return(totalMarks/400)*100;
+        }
+    }
+    
+
+public class Percentage {
+    public static void main(String[] args) {
+        A a = new A(80,85,90);
+        B b = new B(80,85,70,90);
+        System.out.println("Percentage of Student A is : "+ a.getPercentage());
+        System.out.println("Percentage of Student B is: "+ b.getPercentage());
+    }
+    
+}
+
+
+
+
+
+
+
+
+6. Write the following code in your editor below:
+A class named Arithmetic with a method named add that takes 2 integers as parameters and returns an integer denoting their sum.
+A class named Adder that inherits from a superclass named Arithmetic. The main method in the Tester class should print the following: SAMPLE O/P:My superclass is: Arithmetic
+42 13 20
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+//Write your code here
+class Arithmetic{
+    public int add(int a, int b){
+        int sum = a + b; 
+        return sum;
+    }
+}
+class Adder extends Arithmetic{  
+    public int callAdd(int a, int b){
+        return add(a, b);
+    }
+}
+class Tester{
+    public static void main(String []args){
+        // Create a new Adder object
+        Adder a = new Adder();
+        // Print the name of the superclass on a new line
+        System.out.println("My superclass is: " + a.getClass().getSuperclass().getName());  
+        // Print the result of 3 calls to Adder's `add(int,int)` method as 3 space-separated integers:
+        System.out.print(a.add(10,32) + " " + a.add(10,3) + " " + a.add(10,10) + "\n");
+     }
+}
+
+
+
+
+
+7. You are required to compute the power of a number by implementing a calculator. Create a class My Calculator which consists of a single method long power (int, int). This method takes two integers n and p, as parameters and finds (n)p. If either or is negative, then the method must throw an exception which says " n or p should not be negative”. Also, if both and are zero, then the method must throw an exception which says "n or p should not be negative”.
+import java.util.Scanner;
+
+class MyCalculator {
+    public long power(int n, int p) throws Exception {
+        if (n == 0 || p == 0) {
+            throw new Exception("n and p should not be zero");
+
+        } else if (n < 0 || p < 0) {
+            throw new Exception("n or p can't be negative");
+
+        }
+        return (long) Math.pow(n, p);
+
+    }
+
+}
+
+public class q7 {
+    public static void main(String[] args) {
+
+        MyCalculator my_calculator = new MyCalculator();
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int p = sc.nextInt();
+
+        try {
+            System.out.println(my_calculator.power(n, p));
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+            // TODO: handle exception
+        }
+    }
+
+}
+
+
+
+8. You are given a phone book that consists of people's names and their phone number. After that you will be given some person's name as query. For each query, print the phone number of that person. Use HashMap to implement it.The first line will have an integer denoting the number of entries in the phone book. Each entry consists of two lines: a name and the corresponding phone number.
+After these, there will be some queries. Each query will contain a person's name. Read the queries until end-of-file.
+Constraints:
+A person's name consists of only lower-case English letters and it may be in the format 'first-name last-name' or in the format 'first-name'. Each phone number has exactly 8 digits without any leading zeros.For each case, print "Not found" if the person has no entry in the phone book. Otherwise, print the person's name and phone number.
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class PhoneBook {
+    public static void main(String[] args) {
+        HashMap<String, String> phoneBook = new HashMap<>();
+
+        Scanner scanner = new Scanner(System.in);
+
+        int numEntries = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character after reading the number of entries
+
+        // Read the phone book entries
+        for (int i = 0; i < numEntries; i++) {
+            String name = scanner.nextLine();
+            String phoneNumber = scanner.nextLine();
+            phoneBook.put(name, phoneNumber);
+        }
+
+        // Read the queries
+        while (scanner.hasNextLine()) {
+            String query = scanner.nextLine();
+            String phoneNumber = phoneBook.get(query);
+
+            if (phoneNumber != null) {
+                System.out.println(query + " " + phoneNumber);
+            } else {
+                System.out.println("Not found");
+            }
+        }
+
+        scanner.close();
+    }
+}
+
+
+
+
+9.  
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class lab_9_gui {
+    public static void main(String[] args) {
+        JFrame jf = new JFrame();
+        jf.setSize(500, 500);
+        JPanel panel = new JPanel();
+        JMenuBar menuBar = new JMenuBar();
+        JMenu file = new JMenu("File");
+        JMenu help = new JMenu("Help");
+        menuBar.add(file);
+        menuBar.add(help);
+        JMenuItem open = new JMenuItem("Open");
+        JMenuItem saveAs = new JMenuItem("Save as");
+        file.add(open);
+        file.add(saveAs);
+        JTextArea textArea = new JTextArea();
+        JTextField text = new JTextField(15);
+        JButton reset = new JButton("Clear");
+        JButton send = new JButton("Send");
+        JLabel label = new JLabel("Please Enter Text");
+        panel.add(label);
+        panel.add(text);
+        panel.add(send);
+        panel.add(reset);
+// Action listener for the send button
+        send.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = text.getText();
+                textArea.append(inputText + "\n");
+                text.setText("");
+            }
+        });
+// Action listener for the clear button
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textArea.setText("");
+            }
+        });
+        jf.getContentPane().add(menuBar, BorderLayout.NORTH);
+        jf.getContentPane().add(panel, BorderLayout.SOUTH);
+        jf.getContentPane().add(textArea, BorderLayout.CENTER);
+        jf.setVisible(true);
+    }
+}
+
+
+10.  
+
+import javax.swing.*;
+import javax.swing.JFrame;
+import  java.awt.event.*;
+
+class addCalculator {
+    public addCalculator() {
+        JFrame frame = new JFrame("AddCalculator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300,200);
+        frame.setLayout(null);
+
+        JLabel Heading = new JLabel("Addition");
+        Heading.setBounds(10,10,120,20);
+        frame.add(Heading);
+        JLabel FirstNumber = new JLabel("First NUmber:",JLabel.RIGHT);
+        FirstNumber.setBounds(10,40,120,20);
+        frame.add(FirstNumber);
+        JTextField Firstno = new JTextField();
+        Firstno.setBounds(130,40,80,20);
+        frame.add(Firstno);
+        JLabel SecongNumber = new JLabel("Secong Number:", JLabel.RIGHT);
+        SecongNumber.setBounds(10,70,120,20);
+        frame.add(SecongNumber);
+        JTextField Secongno = new JTextField();
+        Secongno.setBounds(130,70,80,20);
+        frame.add(Secongno);
+        JLabel Result = new JLabel("Result:", JLabel.RIGHT);
+        Result.setBounds(10,100,120,20);
+        frame.add(Result);
+        JTextField output = new JTextField();
+        output.setBounds(130,100,80,20);
+        output.setEditable(false);
+        frame.add(output);
+
+        JButton Add = new JButton("Add");
+        Add.setBounds(10,130,80,20);
+        Add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int FirstNumber = Integer.parseInt(Firstno.getText());
+
+                int secondnumber = Integer.parseInt(Secongno.getText());
+                int result = FirstNumber+secondnumber;
+                output.setText(Integer.toString(result));
+
+
+
+
+
+            }
+        });
+
+        frame.add(Add);
+        JButton clear = new JButton("Clear");
+        clear.setBounds(100,130,80,20);
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Firstno.setText(" ");
+                Secongno.setText("");
+                output.setText("");
+
+            }
+        });
+
+
+        frame.add(clear);
+
+        JButton exitButton = new JButton("Exit");
+        exitButton.setBounds(210,140,80,20);
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        frame.add(exitButton);
+        frame.setVisible(true);
+
+
+
+
+
+
+
+    }
+
+    public static void main(String[] args) {
+        new addCalculator();
+    }
+}
+
+
+
+
+
+
+11.
+11.1) Write a Java program that takes a number as input and prints its multiplication table up to 10. Test Data:
+Input a number: 8
+Expected Output :
+8 x 1 = 8
+8 x 2 = 16
+8 x 3 = 24
+...
+8 x 10 = 80 
+import java.util.Scanner;
+
+public class MultiplicationTable {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Input a number: ");
+        int number = scanner.nextInt();
+
+        System.out.println("Multiplication Table for " + number + ":");
+        for (int i = 1; i <= 10; i++) {
+            int result = number * i;
+            System.out.println(number + " x " + i + " = " + result);
+        }
+
+        scanner.close();
+    }
+}
+
+11.2) Write a java program to check that given number is prime or not.
+
+
+
+
+12. Write a Java program to display the pattern like a diamond.
+Input number of rows (half of the diamond) :7 Expected Output :
+
+
+* 
+*** 
+***** 
+******* 
+********* 
+*********** 
+************* 
+*********** 
+********* 
+******* 
+***** 
+*** 
+*
+
+import java.util.Scanner;
+public class Q12 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		for (int i = 1; i <= num; i++) {
+            for (int j = 1; j <= 2 * i - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+		for(int i = num-1 ; i>0;i--) {
+			for(int j=2*i-1; j>=1;j--) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+		
+
+	}
+}
+In this program, we first prompt the user to enter the number of rows (half of the diamond) using the Scanner class, and we read the input number using the nextInt() method.
+The program then uses nested for loops to print the diamond pattern.
+The first loop (i loop) is responsible for the rows of the upper half of the diamond. It starts from 1 and goes up to the given number of rows (numRows).
+Inside the i loop, we have two more loops:
+•	The second loop (j loop) is used to print the leading spaces before each row of asterisks. The number of leading spaces is determined by numRows - i.
+•	The third loop (k loop) is used to print the asterisks in each row. The number of asterisks in each row is 2 * i - 1.
+After printing the upper half of the diamond, we use another set of loops to print the lower half of the diamond. This loop (i loop) starts from numRows - 1 and goes down to 1. The inner loops (j loop and k loop) inside this loop are similar to the ones used for the upper half.
+The System.out.println() statements are used to move to the next line after each row is printed.
+
+13.
+13.1) Write Java Program to find the transpose of a given matrix . 
+
+CODE-2
+public class Matrix {
+    public static void main(String[] args) {
+        int[][] result = new int[2][2];
+        int[][] arr = { {2,6},
+                        {9,1}};
+
+        for(int i=0;i<2;i++){
+            for(int j=0;j<2;j++){
+                result[i][j]=arr[j][i];
+                System.out.print(" "+arr[i][j]+" ");
+            }
+            System.out.println(" ");
+        }
+
+        System.out.println(" ");
+
+        for(int i=0;i<2;i++){
+            for(int j=0;j<2;j++){
+
+                System.out.print(" "+result[i][j]+" ");
+            }
+            System.out.println(" ");
+        }
+
+
+
+    }
+}
+13.2) Write Java Program to find the number of the words in the given text file.
+
+Code-2
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+public class CountWordFile {
+    public static void main(String[] args) throws Exception {
+        String line;
+        int count = 0;
+
+        // Opens a file in read mode
+        FileReader file = new FileReader("\\Users\\sanika\\Documents\\OOP_lab_que.docx");
+        BufferedReader br = new BufferedReader(file);
+
+        // Gets each line till end of file is reached
+        while ((line = br.readLine()) != null) {
+            // Splits each line into words
+            String words[] = line.split("");
+            // Counts each word
+            count = count + words.length;
+
+        }
+
+        System.out.println("Number of words present in given file: " + count);
+        br.close();
+    }
+}
+
+
+
+14.  
+
+15. Write a Java Program to iterate ArrayList using for-loop, iterator, and advance for-loop. Insert 3 Array List.Input 20 30 40Output:
+
+
+iterator Loop:
+20
+30
+40
+Advanced For Loop:
+20
+30
+40
+For Loop:
+20
+30
+40
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ArrayListIteration {
+    public static void main(String[] args) {
+        // Create an ArrayList
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(20);
+        numbers.add(30);
+        numbers.add(40);
+
+        // Iterate using for-loop
+        System.out.println("For Loop:");
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.println(numbers.get(i));
+        }
+
+        // Iterate using iterator
+        System.out.println("\nIterator Loop:");
+        Iterator<Integer> iterator = numbers.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        // Iterate using advanced for-loop
+        System.out.println("\nAdvanced For Loop:");
+        for (int number : numbers) {
+            System.out.println(number);
+        }
+    }
+}
+16. Write a Java Program to count the number of words in a string using HashMap.Output:
+Input :Enter String: "This this is is done by Saket Saket";
+{Saket=2, by=1, this=1, This=1, is=2, done=1}
+import java.util.HashMap;
+import java.util.Map;
+public class q16 {
+public static void main(String[] args) {
+String str = "This this is is done by Saket Saket";
+Map<String, Integer> hashMap = new HashMap<>();
+String[] words = str.split(" ");
+for (String word : words) {
+Integer integer = hashMap.get(word);
+if (integer == null)
+hashMap.put(word, 1);
+else {
+hashMap.put(word, integer + 1);
+}
+}
+System.out.println(hashMap);
+}
+}
+17. Write a program to read 10 string from console and then print the sorted strings on console (Use String Class).2) combine two string   3)reverse first string nd dispaly it .
+import java.util.Scanner;
+
+public class q16 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s;
+        System.out.println("Enter 10 Strings");
+
+        for (int i = 0; i < 10; i++) {
+             s = sc.nextLine();
+             System.out.println(s);
+           
+        }
+        System.out.println("Enter two strings to combine");
+        String a1 = sc.nextLine();
+        String a2 = sc.nextLine();
+        System.out.println(a1+" " +a2);
+        
+        String rev="";
+        char ch;
+        for(int i=0; i< a1.length(); i++){
+            ch= a1.charAt(i);
+            
+            rev = ch+rev;
+        }
+        System.out.println(rev);
+         
+
+    }
+
+}
+18. Write a program to implement following inheritance. Accept data for 5 persons and display the name of employee having salary greater than 5000.
+
+Class Name: Person
+Member variables:
+Name, age
+
+Class Name: Employee
+Member variables:
+Designation, salary
+CODE-1
+class Person{
+    String name;
+    int age;
+    Person(String name, int age){
+        this.name= name;
+        this.age=age;
+    }
+
+}
+
+class Employee extends Person{
+    String Designation;
+    double Salary;
+    Employee(String name, int age, String Designation, double Salary){
+        super(name,age);
+        this.Designation=Designation;
+        this.Salary= Salary;
+
+    
+
+
+if(Salary>5000){
+        System.out.println(name);
+    }
+}
+}
+class q18{
+    public static void main(String[] args) {
+
+        Employee emp1 = new Employee("Sarvesh",20,"Manager",5000);
+        Employee emp2 = new Employee("Bhushan",21,"Asst.Manager",4000);
+        Employee emp3 = new Employee("Omkar",22,"Co.Manager",6000);
+        Employee emp4 = new Employee("Mayuresh",20,"Asst.Manager",7000);
+        Employee emp5 = new Employee("Harshdeep",21,"Co.Manager",3000);
+
+    }
+}
+
+
+import java.util.Scanner;
+
+class Person {
+    protected String name;
+    protected int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class Employee extends Person {
+    private String designation;
+    private double salary;
+
+    public Employee(String name, int age, String designation, double salary) {
+        super(name, age);
+        this.designation = designation;
+        this.salary = salary;
+    }
+
+    public boolean isSalaryGreaterThan(double amount) {
+        return salary > amount;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Employee[] employees = new Employee[5];
+
+        // Accept data for 5 persons
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Enter details for Person " + (i + 1));
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Age: ");
+            int age = Integer.parseInt(scanner.nextLine());
+            System.out.print("Designation: ");
+            String designation = scanner.nextLine();
+            System.out.print("Salary: ");
+            double salary = Double.parseDouble(scanner.nextLine());
+            employees[i] = new Employee(name, age, designation, salary);
+            System.out.println();
+        }
+
+        // Display names of employees with salary greater than 5000
+        System.out.println("Employees with salary greater than 5000:");
+        for (Employee employee : employees) {
+            if (employee.isSalaryGreaterThan(5000)) {
+                System.out.println(employee.name);
+            }
+        }
+    }
+}
+
+
+ 19. Implementing “Multiple Inheritance”. Create a two interfaces Account containing methods set() and display() And interface Person containing methods store() and disp(). Derive a class Customer from Person and Account. Accept the name, account number, balance and display all the information related to account along with the interest. 
+interface Account {
+    void set(String name, int accountNumber, double balance);
+    void display();
+}
+
+interface Person {
+    void store(String name);
+    void disp();
+}
+
+class Customer implements Account, Person {
+    private String name;
+    private int accountNumber;
+    private double balance;
+
+    @Override
+    public void set(String name, int accountNumber, double balance) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Account Information");
+        System.out.println("Name: " + name);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Balance: $" + balance);
+        System.out.println("Interest: $" + calculateInterest());
+    }
+
+    @Override
+    public void store(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void disp() {
+        System.out.println("Customer Information");
+        System.out.println("Name: " + name);
+    }
+
+    private double calculateInterest() {
+        return balance * 0.05; // Assuming interest rate of 5%
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Customer customer = new Customer();
+
+        // Accept customer information
+        customer.store("John Doe");
+        customer.set("John Doe", 123456, 5000.0);
+
+        // Display account and customer information
+        customer.display();
+        customer.disp();
+    }
+}
+
+
+
+20. "Write a program, to implement the following hierarchy. Displays information of each class the rectangle represents the classes. The classes Movie and MusicVideo inherits all the members of the class VideoTape.
+"
+ 
+class VideoTape {
+    private String title;
+    private int length;
+
+    public VideoTape(String title, int length) {
+        this.title = title;
+        this.length = length;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    
+    public String toString() {
+        return "VideoTape: " + title + " (" + length + " minutes)";
+    }
+}
+
+class Movie extends VideoTape {
+    private String rating;
+
+    public Movie(String title, int length, String rating) {
+        super(title, length);
+        this.rating = rating;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie: " + getTitle() + " (" + getLength() + " minutes, rated " + rating + ")";
+    }
+}
+
+class MusicVideo extends VideoTape {
+    private String artist;
+
+    public MusicVideo(String title, int length, String artist) {
+        super(title, length);
+        this.artist = artist;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    @Override
+    public String toString() {
+        return "MusicVideo: " + getTitle() + " (" + getLength() + " minutes, by " + artist + ")";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        VideoTape tape1 = new VideoTape("The Secret Life of Pets", 90);
+        System.out.println(tape1);  // prints "VideoTape: The Secret Life of Pets (90 minutes)"
+
+        Movie movie1 = new Movie("Jurassic Park", 127, "PG-13");
+        System.out.println(movie1);  // prints "Movie: Jurassic Park (127 minutes, rated PG-13)"
+
+        MusicVideo musicVideo1 = new MusicVideo("Roar", 3, "Katy Perry");
+        System.out.println(musicVideo1);  // prints "MusicVideo: Roar (3 minutes, by Katy Perry)"
+
+    }
+}
+21. Write a Java program to create a class called "Student" with a name, grade, and courses attributes, and methods to add and remove courses.
+import java.util.ArrayList;
+import java.util.List;
+
+class Student {
+    private String name;
+    private int grade;
+    private List<String> courses;
+
+    public Student(String name, int grade) {
+        this.name = name;
+        this.grade = grade;
+        this.courses = new ArrayList<>();
+    }
+
+    public void addCourse(String course) {
+        courses.add(course);
+    }
+
+    public void removeCourse(String course) {
+        courses.remove(course);
+    }
+
+    public void displayCourses() {
+        System.out.println("Courses for " + name + ":");
+        for (String course : courses) {
+            System.out.println(course);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a student
+        Student student = new Student("John Doe", 10);
+
+        // Add courses
+        student.addCourse("Math");
+        student.addCourse("Science");
+        student.addCourse("English");
+
+        // Display courses
+        student.displayCourses();
+
+        // Remove a course
+        student.removeCourse("Science");
+
+        // Display courses after removal
+        student.displayCourses();
+    }
+}
+
+  22. Write a Java program to create a class known as Person with methods called getFirstName() and getLastName(). Create a subclass called Employee that adds a new method named getEmployeeId() and overrides the getLastName() method to include the employee's job title.
+
+// Person class
+class Person {
+    private String firstName;
+    private String lastName;
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+}
+
+// Employee class extending Person
+class Employee extends Person {
+    private String employeeId;
+    private String jobTitle;
+
+    public Employee(String firstName, String lastName, String employeeId, String jobTitle) {
+        super(firstName, lastName);
+        this.employeeId = employeeId;
+        this.jobTitle = jobTitle;
+    }
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    @Override
+    public String getLastName() {
+        return super.getLastName() + " (" + jobTitle + ")";
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Create a Person object
+        Person person = new Person("John", "Doe");
+        System.out.println("First Name: " + person.getFirstName());
+        System.out.println("Last Name: " + person.getLastName());
+
+        System.out.println();
+
+        // Create an Employee object
+        Employee employee = new Employee("Jane", "Smith", "E12345", "Manager");
+        System.out.println("First Name: " + employee.getFirstName());
+        System.out.println("Last Name: " + employee.getLastName());
+        System.out.println("Employee ID: " + employee.getEmployeeId());
+    }
+}
+   
+
+23. Write a Java program to find the length of the longest consecutive elements sequence from an unsorted array of integers.
+Sample array: [49, 1, 3, 200, 2, 4, 70, 5]
+The longest consecutive elements sequence is [1, 2, 3, 4, 5], therefore the program will return its length 5.
+import java.util.HashSet;
+
+public class LongestConsecutiveSequence {
+    public static int findLongestConsecutiveSequence(int[] nums) {
+        // Create a HashSet to store all the numbers in the array
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+
+        int longestSequence = 0;
+
+        // Iterate through the array
+        for (int num : nums) {
+            // Check if the current number is the start of a sequence
+            if (!set.contains(num - 1)) {
+                int currentNum = num;
+                int currentSequence = 1;
+
+                // Find the length of the consecutive sequence
+                while (set.contains(currentNum + 1)) {
+                    currentNum++;
+                    currentSequence++;
+                }
+
+                // Update the longest sequence if necessary
+                longestSequence = Math.max(longestSequence, currentSequence);
+            }
+        }
+
+        return longestSequence;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {49, 1, 3, 200, 2, 4, 70, 5};
+        int longestSequence = findLongestConsecutiveSequence(nums);
+        System.out.println("The length of the longest consecutive sequence is: " + longestSequence);
+    }
+}
+
+
+24. Create a class Student with attributes roll no, name, age and course. Initialize values through parameterized constructor. If age of student is not in between 15 and 21 then generate user-defined exception "AgeNotWithinRangeException". If name contains numbers or special symbols raise exception "NameNotValidException". Define the two exception classes.
+// Custom exception class for age not within range
+class AgeNotWithinRangeException extends Exception {
+    public AgeNotWithinRangeException(String message) {
+        super(message);
+    }
+}
+
+// Custom exception class for invalid name
+class NameNotValidException extends Exception {
+    public NameNotValidException(String message) {
+        super(message);
+    }
+}
+
+// Student class
+class Student {
+    private int rollNo;
+    private String name;
+    private int age;
+    private String course;
+
+    // Parameterized constructor
+    public Student(int rollNo, String name, int age, String course)
+            throws AgeNotWithinRangeException, NameNotValidException {
+        // Validate age
+        if (age < 15 || age > 21) {
+            throw new AgeNotWithinRangeException("Age is not within the range of 15 to 21.");
+        }
+
+        // Validate name
+        if (!name.matches("^[a-zA-Z ]+$")) {
+            throw new NameNotValidException("Name contains numbers or special symbols.");
+        }
+
+        this.rollNo = rollNo;
+        this.name = name;
+        this.age = age;
+        this.course = course;
+    }
+
+    // Getters
+    public int getRollNo() {
+        return rollNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+}
+
+public class StudentException {
+    public static void main(String[] args) {
+        try {
+            // Create a valid student
+            Student validStudent = new Student(1, "John Doe", 20, "Computer Science");
+            System.out.println("Valid Student:");
+            System.out.println("Roll No: " + validStudent.getRollNo());
+            System.out.println("Name: " + validStudent.getName());
+            System.out.println("Age: " + validStudent.getAge());
+            System.out.println("Course: " + validStudent.getCourse());
+
+            // Create an invalid student with age not within range
+            Student invalidAgeStudent = new Student(2, "Jane Smith", 14, "Mathematics");
+            System.out.println("Invalid Age Student:");
+
+            // Create an invalid student with name not valid
+            Student invalidNameStudent = new Student(3, "1234", 18, "Physics");
+            System.out.println("Invalid Name Student:");
+        } catch (AgeNotWithinRangeException e) {
+            System.out.println("Error creating student: " + e.getMessage());
+        } catch (NameNotValidException e) {
+            System.out.println("Error creating student: " + e.getMessage());
+        }
+    }
+}
+
+
+
+25.  
+
+import javax.swing.*;
+import java.awt.*;
+
+public class q25 extends JFrame {
+    public q25() {
+        setTitle("Simple GUI");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setBackground(Color.GRAY);
+        setLayout(null);
+
+        JLabel label1 = new JLabel("All the best");
+        label1.setForeground(Color.RED);
+        label1.setOpaque(true);
+        label1.setBackground(Color.WHITE);
+        label1.setBounds(10, 10, 70, 30);
+        add(label1);
+
+        JLabel label2 = new JLabel("All the best");
+        label2.setForeground(Color.magenta);
+        label2.setOpaque(true);
+        label2.setBackground(Color.WHITE);
+        label2.setBounds(90, 10, 70, 30);
+        add(label2);
+
+        JLabel label3 = new JLabel("All the best");
+        label3.setForeground(Color.blue);
+        label3.setOpaque(true);
+        label3.setBackground(Color.WHITE);
+        label3.setBounds(170, 10, 70, 30);
+        add(label3);
+
+        JLabel label4 = new JLabel("All the best");
+        label4.setForeground(Color.GREEN);
+        label4.setOpaque(true);
+        label4.setBackground(Color.WHITE);
+        label4.setBounds(250, 10, 70, 30);
+        add(label4);
+
+        JLabel label5 = new JLabel("All the best");
+        label5.setForeground(Color.CYAN);
+        label5.setOpaque(true);
+        label5.setBackground(Color.WHITE);
+        label5.setBounds(125, 45, 70, 30);
+        add(label5);
+
+        JLabel label6 = new JLabel("All the best");
+        label6.setForeground(Color.blue);
+        label6.setBounds(90, 80, 70, 30);
+        add(label6);
+
+        JLabel label7 = new JLabel("All the best");
+        label7.setForeground(Color.pink);
+        label7.setBounds(143, 160, 70, 30);
+        add(label7);
+
+        JLabel label8 = new JLabel("All the best");
+        label8.setForeground(Color.RED);
+        label8.setBounds(196, 240, 70, 30);
+        add(label8);
+
+        JLabel label9 = new JLabel("All the best");
+        label9.setForeground(Color.black);
+        label9.setBounds(250, 320, 70, 30);
+        add(label9);
+
+        setSize(350, 400); // Increase the size of the frame
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new q25());
+    }
+}
+
+
+
+
